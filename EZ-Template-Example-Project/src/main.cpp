@@ -255,25 +255,19 @@ void opcontrol() {
 
     // . . .
     // Put more user control code here!
-    if(master.get_digital(DIGITAL_L1)){
-      claw.move(100);
-    }
-    if(master.get_digital(DIGITAL_UP)){
-      arm.move(100);
-    }
-    else if(master.get_digital(DIGITAL_L2)){
-      claw.move(-100);
-    }
-    
-    else if(master.get_digital(DIGITAL_DOWN)){
-      arm.move(-100);
-    }
-    
+    if(master.get_digital(DIGITAL_L1)) claw.move(100);
+
+    else if(master.get_digital(DIGITAL_L2)) claw.move(-100);
+
+    if(master.get_digital(DIGITAL_UP)) arm.move(100);
+
+    else if(master.get_digital(DIGITAL_DOWN)) arm.move(-100);
+  
     else{
       arm.move(0);
       claw.move(0);
       arm.brake();
-      claw.brake();
+      claw.brake(); 
     }
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
